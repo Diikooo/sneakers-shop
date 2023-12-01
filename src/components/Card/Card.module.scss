@@ -1,0 +1,42 @@
+.card {
+    border: 1px solid #f2f2f2;
+    padding: 20px;
+    width: 220px;
+    border-radius: 40px;
+    margin-right: 25px;
+    margin-bottom: 25px;
+
+    .plus {
+        cursor: pointer;
+    }
+
+    .favorite {
+        position: absolute;
+        cursor: pointer;
+    }
+
+    span {
+        text-transform: uppercase;
+        opacity: 0.5;
+        font-size: 12px;
+    }
+
+    b {
+        font-size: 13px;
+    }
+
+    h5 {
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    
+
+    transition: .4s;
+    // cursor: pointer;
+
+    &:hover {
+        box-shadow: 0 0px 15px rgba(0, 0, 0, 0.1);
+        transform: scale(1.01);
+    }
+}
