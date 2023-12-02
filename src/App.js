@@ -4,37 +4,64 @@ import Drawer from "./components/Drawer";
 import Header from "./components/Header";
 import axios from "axios";
 
-
 function App() {
   const [items, setItems] = React.useState([]);
   const [cartItems, setCartItems] = React.useState([]);
-  const [searchValue, setSearchValue] = React.useState('');
+  const [favorites, setFavorites] = React.useState([]);
+  const [searchValue, setSearchValue] = React.useState("");
   const [cartOpened, setCartOpened] = React.useState(false);
 
   useEffect(() => {
-    axios.get("https://65622e78dcd355c08324a47c.mockapi.io/items").
-    then((res) => {setItems(res.data);});
+    axios
+      .get("https://65622e78dcd355c08324a47c.mockapi.io/items")
+      .then((res) => {
+        setItems(res.data);
+      });
 
-    axios.get("https://65622e78dcd355c08324a47c.mockapi.io/cart").
-    then((res) => {setCartItems(res.data);});
+    axios
+      .get("https://65622e78dcd355c08324a47c.mockapi.io/cart")
+      .then((res) => {
+        setCartItems(res.data);
+      });
+
+      const favoritesFromStorage = JSON.parse(localStorage.getItem('favorites')) || [];
+      setFavorites(favoritesFromStorage);
+    
   }, []);
 
   const onAddToCart = (obj) => {
     // sdelta proverku esli est uje v baskete to nado udalyat ili ne dobavlyat
-    axios.post("https://65622e78dcd355c08324a47c.mockapi.io/cart", obj);
-    setCartItems((prev) => [...prev, obj]);
+      axios.post("https://65622e78dcd355c08324a47c.mockapi.io/cart", obj);
+      setCartItems((prev) => [...prev, obj]);
   };
-
-
-  
 
 
   const onRemoveItem = (id) => {
     console.log(id);
     axios.delete(`https://65622e78dcd355c08324a47c.mockapi.io/cart/${id}`);
-    setCartItems((prev) => prev.filter(item => item.id !== id));
-  };  
+    setCartItems((prev) => prev.filter((item) => item.id !== id));
+  };
 
+
+  // const onAddToFavoritee = (obj) => {
+  //   // sdelta proverku esli est uje v baskete to nado udalyat ili ne dobavlyat
+  //   axios.post("https://65622e78dcd355c08324a47c.mockapi.io/favorites", obj);
+  //   setFavorites((prev) => [...prev, obj]);
+  // };
+
+  const onAddtoFavorite = (obj) => {
+    const favoritesFromStorage = JSON.parse(localStorage.getItem('favorites')) || [];
+  
+    const isAlreadyInFavorites = favoritesFromStorage.some(item => item.id === obj.id);
+  
+    if (!isAlreadyInFavorites) {
+      const newFavorites = [...favoritesFromStorage, obj];
+  
+      localStorage.setItem('favorites', JSON.stringify(newFavorites));
+  
+      setFavorites(newFavorites);
+    }
+  };
 
 
   const onChangeSearch = (event) => {
@@ -58,7 +85,7 @@ function App() {
             {searchValue ? `Search by: "${searchValue}"` : "All sneakers "}
           </h1>
           <div className="searchBlock d-flex align-center">
-            <img src="/img/search.svg" />
+            <img src="/img/search.svg" alt="search"/>
             {searchValue && (
               <img
                 onClick={() => {
@@ -87,9 +114,9 @@ function App() {
                 title={item.title}
                 price={item.price}
                 imageUrl={item.imageUrl}
-                onFavorite={() => console.log('Added to favorite')}
+                onFavorite={(obj) => onAddtoFavorite(obj)}
                 onPlus={(obj) => onAddToCart(obj)}
-              /> 
+              />
             ))}
         </div>
       </div>

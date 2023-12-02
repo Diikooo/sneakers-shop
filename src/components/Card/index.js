@@ -6,14 +6,19 @@ const Card = ({title, price, imageUrl, onPlus, onFavorite }) => {
   const [isFavorite, setIsFavorite] = React.useState(false);
 
   const onClickPlus = () => {
-    onPlus({ title, price, imageUrl });
+    onPlus({title, price, imageUrl});
     setIsAdded(!isAdded);
   };
 
   const onClickFavorite = () => {
+    onFavorite({ id: title, title, price, imageUrl });
     setIsFavorite(!isFavorite);
-    onFavorite() 
   };
+
+  // const onClickFavorite = () => {
+  //   onFavorite({ title, price, imageUrl });
+  //   setIsFavorite(!isFavorite);
+  // };
 
   return (
     <div className={styles.card}>
