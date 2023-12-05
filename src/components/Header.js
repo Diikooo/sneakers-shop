@@ -1,8 +1,11 @@
+import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { useCart } from "../hooks/useCart";
 
-import Drawer from "./Drawer";
 
 function Header(props) {
+  const { totalPrice} = useCart();
+
   return (
     <header className="p-3">
       <nav className="navbar">
@@ -27,15 +30,16 @@ function Header(props) {
           <ul className="d-flex align-center">
               <li className="mx-2 cu-p" onClick={props.onClickCart}>
                 <p className="d-flex align-center">
-                  <img src="img/cart.svg" width={25} height={25} alt="Cart" />
-                  250 ₸
+                  <img className="me-0" src="img/cart.svg" width={25} height={25} alt="Cart" />
+                  <span className="me-0 ms-2">{totalPrice} ₸</span>
+                  {/* <span className="ms-1">{cartItems.length > 0 ? `${totalPrice} ₸` : ''}</span> */}
                 </p>
               </li>
             <li className="mr-10 cu-p">
               <Link to="/favorites">
               <img
                 src="img/favorite.svg"
-                className="mx-3"
+                className="me-3 ms-2"
                 width={25}
                 height={25}
                 alt="Favorite"
@@ -43,8 +47,10 @@ function Header(props) {
               </Link>
             </li>
             <li className="mr-10 cu-p">
+              <Link to="/orders">
               {" "}
               <img src="img/user.svg" width={25} height={25} alt="User" />
+              </Link>
             </li>
           </ul>
         </div>

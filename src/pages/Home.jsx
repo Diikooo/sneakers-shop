@@ -1,15 +1,18 @@
+import React from "react";
 import Card from "../components/Card";
+
+
 
 function Home({
     items,
-    cartItems,
     searchValue,
     setSearchValue,
-    onChangeSearch,
+    onChangeSearch, 
     onAddtoFavorite,
     onAddToCart,
     isLoading,
   }) {
+
     const renderItems = () => {
       const filteredItems = items.filter((item) =>
         item.title.toLowerCase().includes(searchValue.toLowerCase())
@@ -19,7 +22,6 @@ function Home({
           key={index}
           onFavorite={(obj) => onAddtoFavorite(obj)}
           onPlus={(obj) => onAddToCart(obj)}
-          added={cartItems.some(obj => Number(obj.id) === Number(item.id))}
           loading={isLoading}
           {...item}
         />

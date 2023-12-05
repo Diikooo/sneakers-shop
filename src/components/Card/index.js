@@ -1,8 +1,10 @@
+import { useState } from "react";
 import React from "react";
 import styles from "./Card.module.scss";
 import ContentLoader from "react-content-loader";
+import AppContext from "../../context";
 
-const Card = ({
+function Card({
   id,
   title,
   price,
@@ -10,19 +12,19 @@ const Card = ({
   onPlus,
   onFavorite,
   favorited = false,
-  added = false,
-  loading = false
-}) => {
-  const [isAdded, setIsAdded] = React.useState(added);
-  const [isFavorite, setIsFavorite] = React.useState(favorited);
+  loading = false,
+}) {
+  const { isItemAdded } = React.useContext(AppContext);
+  const [isFavorite, setIsFavorite] = useState(favorited);
+
+  const obj = { id, parentId: id, title, price, imageUrl };
 
   const onClickPlus = () => {
-    onPlus({ id, title, price, imageUrl });
-    setIsAdded(!isAdded);
+    onPlus(obj);
   };
 
   const onClickFavorite = () => {
-    onFavorite({ id, title, price, imageUrl });
+    onFavorite(obj);
     setIsFavorite(!isFavorite);
   };
 
@@ -46,32 +48,40 @@ const Card = ({
       ) : (
         <>
           <div className={styles.favorite} onClick={onClickFavorite}>
-            <img
-              src={isFavorite ? "/img/liked.svg" : "/img/unliked.svg"}
-              alt="Favorite"
-              width={30}
-              height={30}
-            />
+            {onFavorite && (
+              <img
+                src={isFavorite ? "/img/liked.svg" : "/img/unliked.svg"}
+                alt="Favorite"
+                width={30}
+                height={30}
+              />
+            )}
           </div>
-          <img width='90%' height={135} src={imageUrl} alt="" />
+          <img width="90%" height={135} src={imageUrl} alt="" />
           <h5>{title}</h5>
 
           <div className="d-flex justify-between align-center">
             <div className="d-flex flex-column">
               <span>Price:</span>
-              <b>{price} tenge</b>
+              <b>{price} ₸</b>
             </div>
-            <img
-              className={styles.plus}
-              onClick={onClickPlus}
-              src={isAdded ? "/img/button-success.svg" : "/img/button-plus.svg"}
-              alt="Plus"
-            />
+            {onPlus && (
+              <img
+                className={styles.plus}
+                onClick={onClickPlus}
+                src={
+                  isItemAdded(id)
+                    ? "/img/button-success.svg"
+                    : "/img/button-plus.svg"
+                }
+                alt="Plus"
+              />
+            )}
           </div>
         </>
       )}
     </div>
   );
-};
+}
 
 export default Card;

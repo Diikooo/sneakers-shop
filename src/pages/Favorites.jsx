@@ -3,8 +3,8 @@ import Card from '../components/Card'
 import AppContext from '../context';
 
 
-function Favorites({onAddtoFavorite}) {
-  const { favorites} = React.useContext(AppContext);
+function Favorites() {
+  const { favorites, onAddtoFavorite} = React.useContext(AppContext);
 
 
   return (

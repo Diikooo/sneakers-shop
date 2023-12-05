@@ -1,5 +1,70 @@
+import { useState } from "react";
+import Info from "./Info";
+import React from "react";
+import axios from "axios";
+import { useCart } from "../hooks/useCart";
+
+const delay = () => new Promise((resolve) => setTimeout(resolve, 1000));
 
 function Drawer({ onClose, onRemove, items = [] }) {
+  const [orderId, setOrderId] = useState(null);
+  const [isOrderComplete, setIsOrderComplete] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { cartItems, setCartItems, totalPrice} = useCart();
+
+  const onClickOrder = async () => {
+    try {
+      setIsLoading(true);
+      const { data } = await axios.post(
+        "https://656b0e17dac3630cf7279e0b.mockapi.io/orders",
+        {
+          items: cartItems,
+        }
+      );
+
+      setOrderId(data.id);
+      setIsOrderComplete(true);
+      setCartItems([]);
+
+      for (let i = 0; i < cartItems.length; i++) {
+        const item = cartItems[i];
+        await axios.delete(
+          "https://65622e78dcd355c08324a47c.mockapi.io/cart/" + item.id
+        );
+        await delay();
+      }
+    } catch (error) {
+      alert("Error when creating an order :(");
+    }
+    setIsLoading(false);
+  };
+
+  // const onClickOrder = async () => {
+  //   try {
+  //     setIsLoading(true);
+  //     const { data } = await axios.post(
+  //       "https://656b0e17dac3630cf7279e0b.mockapi.io/orders",
+  //       {
+  //         items: cartItems,
+  //       }
+  //     );
+
+  //     setOrderId(data.id);
+  //     setIsOrderComplete(true);
+  //     setCartItems([]);
+
+  //     for (let i = 0; i < cartItems.length; i++) {
+  //       const item = cartItems[i];
+  //       await axios.put('https://65622e78dcd355c08324a47c.mockapi.io/cart' + item.id);
+  //       await delay();
+  //     }
+
+  //   } catch (error) {
+  //     alert("Error when creating an order :(");
+  //   }
+  //   setIsLoading(false);
+  // };
+
   return (
     <div className="overlay">
       <div
@@ -47,38 +112,34 @@ function Drawer({ onClose, onRemove, items = [] }) {
                 <li>
                   <span>Total: </span>
                   <div></div>
-                  <b>24 500 tg</b>
+                  <b>{totalPrice} ₸</b>
                 </li>
 
                 <li>
                   <span>Tax 5%:</span>
                   <div></div>
-                  <b>1072 tenge</b>
+                  <b>{totalPrice * 0.05} ₸</b>
                 </li>
               </ul>
-              <button className="greenBtn">
+              <button
+                disabled={isLoading}
+                onClick={onClickOrder}
+                className="greenBtn"
+              >
                 Check out <img src="/img/arrow.svg" alt="" />
               </button>
             </div>
           </div>
         ) : (
-          <div className="cart-empty d-flex align-center justify-center flex-column flex">
-            <img
-              src="img/empty-cart.png"
-              width={120}
-              height={120}
-              className="mb-20"
-              alt="Empty"
-            />
-            <h2>Cart is empty</h2>
-            <p className="opacity-6">
-              Add at least 1 pair of sneakers to order
-            </p>
-            <button onClick={onClose} className="greenBtn">
-              <img src="img/arrow.svg" alt="Arrow" className="mr-10 arrow" />
-              Return back
-            </button>
-          </div>
+          <Info
+            title={isOrderComplete ? "Order completed!" : "Cart is empty"}
+            description={
+              isOrderComplete
+                ? `Your order #${orderId}  will be send soon.`
+                : "Add at least 1 pair of sneakers to order"
+            }
+            image={isOrderComplete ? "img/ordered.png" : "img/empty-cart.png"}
+          />
         )}
       </div>
     </div>
