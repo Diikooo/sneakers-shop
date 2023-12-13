@@ -6,13 +6,13 @@ import AppContext from '../context';
     const {setCartOpened} = React.useContext(AppContext);
 
   return (
-    <div className="cart-empty d-flex align-center justify-center flex-column flex">
+    <div className="cart-empty d-flex align-center justify-center flex-column p-md-2 p-lg-4 m-md-2 m-lg-4">
             <img
               src={image}
               width={120}
-              
-              className="mb-20"
+              className="mb-20 img-fluid"
               alt="Empty"
+
             />
             <h2>{title}</h2>
             <p className="opacity-6">

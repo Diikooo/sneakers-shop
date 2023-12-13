@@ -1,9 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;400;700;900&display=swap');
+
+* {
+  font-family: 'Kanit', sans-serif;
+}
+
+
+
+
+
+//Custom class styles
+
+.bg-gray {
+  background: #2a2a2a;
+}
+
+.text-white {
+  color: white;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.fa-user:hover {
+  color: #2678ca;
+}
+
+.fa-clipboard-check:hover {
+  color: #5ae461;
+}
+
+.fa-heart:hover {
+  color: rgb(255, 88, 88);
+}
+
+.fa-cart-plus:hover {
+  color: rgb(245, 196, 104);
+}
+
+.fs-small {
+  font-size: 10px;
+}
+
+
+//Location Modal styles
+i {
+  color:#302e38;
+  transition: 0.15s;
+
+
+  &:hover {
+    color:#221f29;
+    transform: scale(1.1);
+  }
+}
+
+
+
+
+.custom-close-btn {
+  background-color: rgb(216, 216, 216); 
+  color: #070707; 
+  font-size: 30px; 
+  border: none; 
+  padding:0 16px 2px 16px;
+  cursor: pointer;
+  transition: .4s;
+}
+
+.custom-close-btn:hover {
+  background-color: rgb(165, 165, 165); 
+}
+
+
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #e7f6ff;
+  background: #e9e9e9;
 }
 
 .wrapper {
@@ -11,8 +86,8 @@ body {
   background: #FFFFFF;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
   border-radius: 20px;
-  max-width: 1080px;
-  margin: 50px auto;
+  max-width: 1280px;
+  margin: 0px auto;
 }
 
 header {
@@ -36,6 +111,43 @@ header {
 }
 
 
+.footer {
+  a {
+      text-align: center;
+  }
+
+  i {
+    color:white;
+    font-size: 40px;
+    margin: 0 20px;
+    cursor: pointer;
+  }
+  .fa-youtube:hover {
+    color: red;
+    text-shadow: 0 0 5px rgb(167, 104, 103);
+
+  }
+
+  .fa-telegram:hover{
+    color: rgb(36, 149, 190);
+    text-shadow: 0 0 5px rgb(19, 118, 198);
+  }
+
+  .fa-instagram:hover {
+    text-shadow: 0 0 5px rgb(155, 80, 33);
+
+    color: rgb(197, 182, 23);
+  }
+  .fa-tiktok:hover {
+    text-shadow: 3px 2px 2px red, -2px -2px 2px blue;
+    color: rgb(255, 252, 252);
+  }
+
+}
+
+
+
+
 
 
 
@@ -45,12 +157,15 @@ header {
   padding: 0 15px;
   position: relative;
 
+
   input {
     border: none;
     padding: 10px;
     font-size: 16px;
-  
   }
+
+ 
+
 
 
   .clear {
@@ -61,9 +176,6 @@ header {
 
 }
 
-* {
-  font-family: 'Inter';
-}
 
 
 
@@ -106,11 +218,11 @@ header {
     margin: 0;
   }
 
-  
+
   .cart-cards {
     display: flex;
     flex-direction: column;
-    height: 100%; 
+    height: 100%;
   }
 
 
@@ -118,6 +230,7 @@ header {
     transition: .2s ease-in-out;
 
   }
+
   .removeBtn:hover {
     transform: scale(1.15);
   }
@@ -141,7 +254,7 @@ header {
         transform: rotate(180deg) translateX(3px);
       }
     }
-  
+
     .arrow {
       position: relative;
       top: -1px;
@@ -151,9 +264,9 @@ header {
     }
   }
 
-  
 
-  
+
+
 
 
 }
@@ -271,11 +384,49 @@ header {
   }
 }
 
+//Sign Up
+.google-form {
+  border: 2px solid rgb(203, 203, 203);
+  text-align: center;
+  line-height: 1.5em;
+  padding: 20px;
+  margin: 10px 0;
+  cursor: pointer;
+}
+.google-form:hover {
+  background: rgb(203, 203, 203);
+  transition: .3s;
+}
+
+.meta-form {
+  text-align: center;
+  line-height: 1.5em;
+  padding: 20px;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.apple-form {
+  background: #000;
+  color: white;
+  text-align: center;
+  line-height: 1.5em;
+  padding: 20px;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.apple-form:hover{
+  opacity: 0.7;
+  transition: .3s;
+}
+
 
 @keyframes button-loading {
   0% {
     opacity: 1;
   }
+
   100% {
     opacity: 1;
   }

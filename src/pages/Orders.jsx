@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import Card from "../components/Card";
 import axios from "axios";
-import AppContext from "../context";
 
 function Orders() {
-  const { onAddtoFavorite, onAddToCart } = React.useContext(AppContext);
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
 
@@ -28,7 +26,7 @@ function Orders() {
       <div className="d-flex justify-between align-center mb-30">
         <h1 className=""> My orders</h1>
       </div>
-      <div className="d-flex flex-wrap">
+      <div className="row d-flex justify-content-center">
         {(isLoading ? [...Array(8)] : orders).map((item, index) => (
           <Card
             key={index}

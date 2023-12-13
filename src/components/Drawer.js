@@ -39,7 +39,6 @@ function Drawer({ onClose, onRemove, items = [] }) {
     setIsLoading(false);
   };
 
-  // const onClickOrder = async () => {
   //   try {
   //     setIsLoading(true);
   //     const { data } = await axios.post(
@@ -118,7 +117,7 @@ function Drawer({ onClose, onRemove, items = [] }) {
                 <li>
                   <span>Tax 5%:</span>
                   <div></div>
-                  <b>{totalPrice * 0.05} ₸</b>
+                  <b>{ Math.round(totalPrice * 0.05)} ₸</b>
                 </li>
               </ul>
               <button
@@ -135,7 +134,7 @@ function Drawer({ onClose, onRemove, items = [] }) {
             title={isOrderComplete ? "Order completed!" : "Cart is empty"}
             description={
               isOrderComplete
-                ? `Your order #${orderId}  will be send soon.`
+                ? `Your order #${orderId} will be send soon.`
                 : "Add at least 1 pair of sneakers to order"
             }
             image={isOrderComplete ? "img/ordered.png" : "img/empty-cart.png"}

@@ -29,7 +29,7 @@ function Card({
   };
 
   return (
-    <div className={styles.card}>
+    <div className={`m-1 m-sm-2 m-lg-3 ${styles.card}`}>
       {loading ? (
         <ContentLoader
           speed={2}
@@ -47,7 +47,7 @@ function Card({
         </ContentLoader>
       ) : (
         <>
-          <div className={styles.favorite} onClick={onClickFavorite}>
+          <div className={`col- col-md-4  col-lg-3 ${styles.favorite}`} onClick={onClickFavorite}>
             {onFavorite && (
               <img
                 src={isFavorite ? "/img/liked.svg" : "/img/unliked.svg"}
