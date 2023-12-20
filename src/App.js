@@ -12,6 +12,7 @@ import Favorites from "./pages/Favorites";
 import Orders from "./pages/Orders";
 import UserProfile from "./components/UserProfile";
 import Footer from "./components/Footer";
+import About from "./components/About";
 
 
 function App() {
@@ -108,7 +109,7 @@ function App() {
           "https://656b0e17dac3630cf7279e0b.mockapi.io/favorites",
           obj
         );
-        setFavorites((prev) => [...prev, data]);
+        setFavorites((prev) => [...prev, data]);  
       }
     } catch (error) {
       alert("could not add to favorites");
@@ -140,7 +141,7 @@ function App() {
       <div className="wrapper clear min-vh-100">
         
         {/* Cookies Modal */}
-        <div
+        {/* <div
           className={`modal ${show ? "show" : ""}`}
           tabIndex="-1"
           role="dialog"
@@ -178,7 +179,7 @@ function App() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {cartOpened && (
           <Drawer
@@ -209,6 +210,7 @@ function App() {
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/user" element={<UserProfile />} />
+          <Route path="/about" element={<About />} />
         </Routes>
           
         <Footer/>

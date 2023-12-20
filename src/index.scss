@@ -4,11 +4,34 @@
   font-family: 'Kanit', sans-serif;
 }
 
-
+.form-container {
+  margin-top: 50px;
+  width: 500px;
+}
 
 
 
 //Custom class styles
+
+
+
+.img-wrapper{
+  overflow: hidden;
+
+}
+
+.img-hover {
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.img-hover:hover {
+  transform: scale(1.1);
+}
+
+.fs-8 {
+  font-size: 14px;
+}
 
 .bg-gray {
   background: #2a2a2a;
@@ -39,9 +62,50 @@
   color: rgb(245, 196, 104);
 }
 
+.fa-circle-info:hover {
+  color: #b815bd;
+  color: #808080;
+}
+
 .fs-small {
   font-size: 10px;
 }
+
+
+@keyframes colorChanger {
+  0% { color: #ff0000; text-shadow: 2px 2px 4px #ff0000; }
+  25% { color: #1c671c; text-shadow: 2px 2px 4px #0a400a; }
+  50% { color: #2f00ff; text-shadow: 2px 2px 4px #2f00ff; }
+  75% { color: #dc5917; text-shadow: 2px 2px 4px #dc5917; }
+  100% { color: #ff0000; text-shadow: 2px 2px 4px #ff0000; }
+}
+
+@keyframes wobble {
+  25% { transform: translateX(5px) rotate(5deg); }
+  50% { transform: translateX(-5px) rotate(-5deg); }
+  75% { transform: translateX(3px) rotate(3deg); }
+  100% { transform: translateX(0) rotate(0); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.title-about {
+  display: inline-block;
+  font-weight: bold;
+  animation: colorChanger 5s infinite, fadeIn 2s ease-in-out infinite;
+}
+
+.weird-emoji {
+  display: inline-block;
+  animation: wobble 2s ease-in-out infinite;
+}
+
+
+
 
 
 //Location Modal styles

@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="footer container-fluid bg-gray mt-4 p-3">
+    <footer className="footer container-fluid bg-gray mt-4 p-3">
       <div className="links-footer d-flex justify-content-center">
         <a href="https://youtube.com"><i className="fa-brands fa-youtube"></i></a>
         <a href="https://telegram.org"><i className="fa-brands fa-telegram"></i></a>
@@ -65,7 +65,7 @@ const Footer = () => {
         />
         <p className="text-light fs-5">2023 © StreetSneakChic</p>
       </div>
-    </div>
+    </footer>
   );
 };
 

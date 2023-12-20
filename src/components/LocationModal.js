@@ -23,7 +23,7 @@ const LocationModal = () => {
               <h1 className="modal-title fs-3 fw-bold" id="locationLabel">
                 Change order details
               </h1>
-              <button type="button" className="custom-close-btn rounded-5" data-bs-dismiss="modal" aria-label="Close">
+              <button type="button" className=" custom-close-btn rounded-5" data-bs-dismiss="modal" aria-label="Close">
                 &times;
               </button>
             </div>
