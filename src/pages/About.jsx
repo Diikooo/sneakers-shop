@@ -1,17 +1,10 @@
-import React from "react";
-import InfoBlock from "./InfoBlock";
-import withAnimation from "./WithAnimation";
-
-
-
+import InfoBlock from "../pages/InfoBlock";
 
 const About = () => {
-
-  const AnimatedInfoBlock = withAnimation(InfoBlock)
   return (
     <div className="container-fluid p-1 p-lg-4  m-0">
       <div className="row d-flex about m-1 m-lg-4">
-        <h4 className="fs-5 text-secondary m-0">About us</h4>
+        <h4 className="fs-1 text-body-tertiary m-0">About us</h4>
         <h1 className="">
           Online Store{" "}
           <span className="display-5 title-about">StreetSneakChic</span>
@@ -24,20 +17,23 @@ const About = () => {
           StreetSneakChic – where style meets comfort! 👟✨ Exclusive sneakers
           for every occasion – from street style to the party scene. 💃🕺 Our
           designs are art for your feet! 🎨👟 Ignite your urban spirit with
-          StreetSneakChic. 🏙️🔥 #StreetSneakChic #YourStyle
+          StreetSneakChic. 🏙️🔥{" "}
+          <strong className=""> #StreetSneakChic #YourStyle</strong>
         </p>
       </div>
       <button className="ms-4 d-block mb-4  btn btn-dark rounded-4 px-4 fs-5">
         Details
       </button>
 
-
       <div className="d-flex flex-wrap justify-content-center">
-<AnimatedInfoBlock title="Title" description="Description" gifUrl="/img/gif1.gif" />
-<AnimatedInfoBlock  gifUrl="/img/penguin.gif" />
-</div>
+        <InfoBlock
+          title="Title"
+          description="Description"
+          gifUrl="/img/gif1.gif"
+        />
+      </div>
 
-    <h3 className="fs-1 text-center mt-4 mb-2">Photos of our stores</h3>
+      <h3 className="fs-1 text-center mt-4 mb-2">Our stores</h3>
 
       <div className="row">
         <div className="col-md-4 text-center mb-2">
@@ -76,7 +72,36 @@ const About = () => {
         </div>
       </div>
 
+      <div class="container mt-4">
+        <h2>StreetSneakChic Store Branches in Kazakhstan</h2>
 
+        <table class="table table-bordered">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">№</th>
+              <th scope="col">City</th>
+              <th scope="col">Branch Address</th>
+            </tr>
+          </thead>
+          <tbody class="table-group-divider">
+            <tr>
+              <th scope="row">1</th>
+              <td>Almaty</td>
+              <td>Timiryazeva, 38/1</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Nur-Sultan</td>
+              <td>Panfilov Street, 128</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Aktau</td>
+              <td>Abay Avenue, 51</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

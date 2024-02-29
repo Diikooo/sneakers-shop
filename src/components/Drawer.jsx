@@ -1,8 +1,10 @@
 import { useState } from "react";
-import Info from "./Info";
-import React from "react";
+
 import axios from "axios";
+
 import { useCart } from "../hooks/useCart";
+
+import Info from "./Info";
 
 const delay = () => new Promise((resolve) => setTimeout(resolve, 1000));
 
@@ -10,7 +12,8 @@ function Drawer({ onClose, onRemove, items = [] }) {
   const [orderId, setOrderId] = useState(null);
   const [isOrderComplete, setIsOrderComplete] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const { cartItems, setCartItems, totalPrice} = useCart();
+  const { cartItems, setCartItems, totalPrice } = useCart();
+
 
   const onClickOrder = async () => {
     try {
@@ -117,16 +120,41 @@ function Drawer({ onClose, onRemove, items = [] }) {
                 <li>
                   <span>Tax 5%:</span>
                   <div></div>
-                  <b>{ Math.round(totalPrice * 0.05)} ₸</b>
+                  <b>{Math.round(totalPrice * 0.05)} ₸</b>
                 </li>
               </ul>
               <button
+                id="liveToastBtn"
                 disabled={isLoading}
                 onClick={onClickOrder}
                 className="greenBtn"
               >
                 Check out <img src="/img/arrow.svg" alt="" />
               </button>
+              <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div
+                  id="liveToast"
+                  class="toast"
+                  role="alert"
+                  aria-live="assertive"
+                  aria-atomic="true"
+                >
+                  <div class="toast-header">
+                    <img src="/img/logo.png" class="rounded me-2" alt="logo" />
+                    <strong class="me-auto">StreetSneakChic</strong>
+                    <small>just now</small>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="toast"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="toast-body">
+                    Your order {orderId} completed successfully
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         ) : (

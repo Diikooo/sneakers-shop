@@ -1,49 +1,48 @@
-import React, {useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import axios from "axios";
 
 import AppContext from "./context";
 
-import Drawer from "./components/Drawer";
-import Header from "./components/Header";
-
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import Orders from "./pages/Orders";
-import UserProfile from "./components/UserProfile";
-import Footer from "./components/Footer";
-import About from "./components/About";
+import UserProfile from "./pages/UserProfile";
+import About from "./pages/About";
 
+import Drawer from "./components/Drawer";
+import Header from "./components/Header";
+import CookieModal from "./components/CookieModal";
+import Footer from "./components/Footer";
 
 function App() {
-  const [items, setItems] = React.useState([]);
-  const [cartItems, setCartItems] = React.useState([]);
-  const [favorites, setFavorites] = React.useState([]);
-  const [searchValue, setSearchValue] = React.useState("");
-  const [cartOpened, setCartOpened] = React.useState(false);
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [show, setShow] = React.useState(true);
-  const handleClose = () => setShow(false);
+  const [items, setItems] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
+  const [cartOpened, setCartOpened] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const [cartResponse, favoritesResponse, itemsResponse] =
-          await Promise.all([
-            axios.get("https://65622e78dcd355c08324a47c.mockapi.io/cart"),
-            axios.get("https://656b0e17dac3630cf7279e0b.mockapi.io/favorites"),
-            axios.get("https://65622e78dcd355c08324a47c.mockapi.io/items"),
-          ]);
+        // const favoritesResponse = await axios.get("https://656b0e17dac3630cf7279e0b.mockapi.io/favorites");
+        // const cartResponse = await axios.get("https://65622e78dcd355c08324a47c.mockapi.io/cart");
+        const itemsResponse = await axios.get(
+          "https://65622e78dcd355c08324a47c.mockapi.io/items"
+        );
 
         setIsLoading(false);
 
-        setCartItems(cartResponse.data);
-        setFavorites(favoritesResponse.data);
+        // setCartItems(cartResponse.data);
+        // setFavorites(favoritesResponse.data);
         setItems(itemsResponse.data);
       } catch (error) {
+        console.error("Error when requesting data:", error);
         alert("Error when requesting data :(");
       }
     }
+
     fetchData();
   }, []);
 
@@ -109,7 +108,7 @@ function App() {
           "https://656b0e17dac3630cf7279e0b.mockapi.io/favorites",
           obj
         );
-        setFavorites((prev) => [...prev, data]);  
+        setFavorites((prev) => [...prev, data]);
       }
     } catch (error) {
       alert("could not add to favorites");
@@ -126,6 +125,9 @@ function App() {
   };
 
   return (
+
+
+
     <AppContext.Provider
       value={{
         items,
@@ -139,47 +141,7 @@ function App() {
       }}
     >
       <div className="wrapper clear min-vh-100">
-        
-        {/* Cookies Modal */}
-        {/* <div
-          className={`modal ${show ? "show" : ""}`}
-          tabIndex="-1"
-          role="dialog"
-          style={{ display: show ? "block" : "none" }}>
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h1
-                  className="modal-title text-secondary fs-1 fw-bold"
-                  id="staticBackdropLabel"
-                >
-                  <i className="fa-solid fa-cookie-bite text-secondary display-4 mx-3"></i>
-                  Cookies Consent
-                </h1>
-              </div>
-              <div className="modal-body p-3">
-                <p className="text-dark fs-2">
-                  We use cookies because without them, the internet would break.{" "}
-                  <a
-                    href="#"
-                    className="text-decoration-underline text-primary"
-                  >
-                    Read more
-                  </a>
-                </p>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary fs-3"
-                  onClick={handleClose}
-                >
-                  Okaaaay
-                </button>
-              </div>
-            </div>
-          </div>
-        </div> */}
+        <CookieModal />
 
         {cartOpened && (
           <Drawer
@@ -212,8 +174,8 @@ function App() {
           <Route path="/user" element={<UserProfile />} />
           <Route path="/about" element={<About />} />
         </Routes>
-          
-        <Footer/>
+
+        <Footer />
       </div>
     </AppContext.Provider>
   );

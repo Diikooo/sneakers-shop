@@ -1,11 +1,24 @@
 import React from "react";
 
 const UserProfile = () => {
+
+  const [email, setEmail] = React.useState('');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(`Form submitted with email`);
+  };
+
+  const handleChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+
   return (
     <div className="container d-flex justify-content-center p-4">
       <div className="row flex-column p-1 p-md-2 p-lg-4 rounded-4 shadow-lg form-container ">
         <h2 className="text-center mb-4 fs-3 fw-semibold">Enter your email</h2>
-        <form action="">
+        <form action="" onSubmit={handleSubmit}>
           <label className="fs-4" htmlFor="email">
             Email
           </label>
@@ -14,6 +27,8 @@ const UserProfile = () => {
             type="email"
             placeholder="someone@gmail.com"
             className="form-control p-3"
+            value={email}
+            onChange={handleChange}
             required
           />
           <button className=" btn mt-3 p-3 w-100 btn-primary" type="submit">

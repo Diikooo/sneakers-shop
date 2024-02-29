@@ -383,7 +383,7 @@ header {
 .greenBtn {
   width: 100%;
   height: 55px;
-  background-color: #9dd558;
+  background-color: #808180;
   border-radius: 18px;
   border: none;
   color: #fff;
@@ -400,11 +400,11 @@ header {
 
 
   &:hover {
-    background: lighten($color: #9dd558, $amount: 10%);
+    background: lighten($color: #444444, $amount: 10%);
   }
 
   &:active {
-    background: darken($color: #9dd558, $amount: 10%);
+    background: darken($color: #323430, $amount: 10%);
   }
 
 }

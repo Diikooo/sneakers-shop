@@ -1,4 +1,3 @@
-import React from "react";
 
 const InfoBlock = ({ title, description, gifUrl }) => {
   return (

@@ -3,6 +3,7 @@ import React from "react";
 import styles from "./Card.module.scss";
 import ContentLoader from "react-content-loader";
 import AppContext from "../../context";
+import StarRating from "../StarRating";
 
 function Card({
   id,
@@ -16,6 +17,8 @@ function Card({
 }) {
   const { isItemAdded } = React.useContext(AppContext);
   const [isFavorite, setIsFavorite] = useState(favorited);
+  const [userRating, setUserRating] = useState("");
+
 
   const obj = { id, parentId: id, title, price, imageUrl };
 
@@ -59,6 +62,7 @@ function Card({
           </div>
           <img width="90%" height={135} src={imageUrl} alt="" />
           <h5>{title}</h5>
+          <StarRating color="#F49D1A" defaultRating={Math.floor(Math.random() * 4) + 2} onSetRating={setUserRating} />
 
           <div className="d-flex justify-between align-center">
             <div className="d-flex flex-column">

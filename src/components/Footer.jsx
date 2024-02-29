@@ -1,5 +1,3 @@
-import React from "react";
-
 const Footer = () => {
   return (
     <footer className="footer container-fluid bg-gray mt-4 p-3">
@@ -10,7 +8,7 @@ const Footer = () => {
         <a href="https://tiktok.com"><i className="fa-brands fa-tiktok"></i></a>
       </div>
       <hr className="text-light" />
-      <div className="row m-4 ">
+      <div className="row m-4">
         <div className="col-sm-4 d-flex flex-column mb-3">
           <a href="#" className="text-white">
             CATALOG
@@ -63,7 +61,7 @@ const Footer = () => {
           height="50"
           className="img-logo rounded-circle me-3"
         />
-        <p className="text-light fs-5">2023 © StreetSneakChic</p>
+        <p className="text-light fs-5">2024 © StreetSneakChic</p>
       </div>
     </footer>
   );
